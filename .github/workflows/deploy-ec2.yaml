@@ -2,7 +2,7 @@ name: Deploy EC2 Instance
 on: 
   push:
     branches: [ main ]  # Trigger on commits to the main branch
-   workflow_dispatch:
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
