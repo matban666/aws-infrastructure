@@ -57,6 +57,7 @@ resource "aws_instance" "example" {
   tags = {
     Name = "My Web Server" 
   }
-
-  variable "SSH_PUBLIC_KEY" {}
 }
+
+# Variable declaration
+variable "SSH_PUBLIC_KEY" {}
