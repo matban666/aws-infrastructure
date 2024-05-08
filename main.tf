@@ -75,12 +75,20 @@ resource "aws_security_group" "allow_web" {
   }
 
   # Adjust egress rules as needed 
+
+  tags = {
+    Name = "My Security Group"
+  }
 }
 
 # SSH Key
 resource "aws_key_pair" "my_key_pair" {
   key_name   = "my-ec2-key" 
   public_key = var.SSH_PUBLIC_KEY 
+
+  tags = {
+    Name = "My Key Pair"
+  }
 }
 
 # EC2 Instance
