@@ -53,7 +53,8 @@ resource "null_resource" "destroy" {
   }
   provisioner "local-exec" {
     command = "echo 'Destroyed EC2 Instance'"
-  } depends_on = [data.aws_instance.example]
+  }
+  depends_on = [data.aws_instance.example]
 
   # SSH Key Pair
   triggers {
@@ -61,7 +62,8 @@ resource "null_resource" "destroy" {
   }
   provisioner "local-exec" {
     command = "echo 'Destroyed Key Pair'"
-  } depends_on = [data.aws_key_pair.my_key_pair]
+  }
+  depends_on = [data.aws_key_pair.my_key_pair]
 
   # Security Group
   triggers {
@@ -69,7 +71,8 @@ resource "null_resource" "destroy" {
   }
   provisioner "local-exec" {
     command = "echo 'Destroyed Security Group'"
-  } depends_on = [data.aws_security_group.allow_web]
+  }
+  depends_on = [data.aws_security_group.allow_web]
 
   # Route to Internet Gateway 
   triggers {
@@ -77,7 +80,8 @@ resource "null_resource" "destroy" {
   }
   provisioner "local-exec" {
     command = "echo 'Destroyed Internet Gateway Route'"
-  } depends_on = [ data.aws_route_table.public]
+  }
+  depends_on = [ data.aws_route_table.public]
 
   # Subnet Route Table Association
   triggers {
@@ -93,7 +97,8 @@ resource "null_resource" "destroy" {
   }
   provisioner "local-exec" {
     command = "echo 'Destroyed Internet Gateway'"
-  } depends_on = [data.aws_internet_gateway.gw]
+  }
+  depends_on = [data.aws_internet_gateway.gw]
 
   # Route Table 
   triggers {
@@ -101,7 +106,8 @@ resource "null_resource" "destroy" {
   }
   provisioner "local-exec" {
     command = "echo 'Destroyed Route Table'"
-  } depends_on = [data.aws_route_table.public]
+  }
+  depends_on = [data.aws_route_table.public]
 
   # Subnet
   triggers {
@@ -109,7 +115,8 @@ resource "null_resource" "destroy" {
   }
   provisioner "local-exec" {
     command = "echo 'Destroyed Subnet'"
-  } depends_on = [data.aws_subnet.public]
+  }
+  depends_on = [data.aws_subnet.public]
 
   # VPC
   triggers {
@@ -117,5 +124,6 @@ resource "null_resource" "destroy" {
   }
   provisioner "local-exec" {
     command = "echo 'Destroyed VPC'"
-  } depends_on = [data.aws_vpc.main]
+  }
+  depends_on = [data.aws_vpc.main]
 }
