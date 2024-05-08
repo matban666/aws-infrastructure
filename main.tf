@@ -8,6 +8,19 @@ provider "aws" {
 # VPC (If you don't have an existing one) 
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
+
+  tags = { 
+    Name = "My VPC"
+  }
+}
+
+# Route Table
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "My Public Route Table"
+  }
 }
 
 # Subnet (If you don't have an existing one)
@@ -16,10 +29,31 @@ resource "aws_subnet" "public" {
   cidr_block  = "10.0.0.0/24"   
   map_public_ip_on_launch = true # Ensure dynamic public IP assignment
 
-  # (Optional) Tag for easier identification
   tags = { 
     Name = "My Public Subnet"
   }
+}
+
+# Internet Gateway
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "My Internet Gateway"
+  }
+}
+
+# Subnet Route Table Association
+resource "aws_route_table_association" "public_route" {
+  subnet_id      = aws_subnet.public.id # Assuming your subnet is named 'public'
+  route_table_id = aws_route_table.public.id 
+}
+
+# Route to the Internet Gateway
+resource "aws_route" "internet_access" {
+  route_table_id         = aws_route_table.public.id 
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.gw.id 
 }
 
 # Security Group
