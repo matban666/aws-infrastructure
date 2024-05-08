@@ -23,5 +23,6 @@ jobs:
       - name: Apply Terraform Configuration
         env:
           SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}  # Add access to your secrets 
+          TF_LOG: DEBUG
         working-directory: ./  # Or ./terraform 
-        run: terraform apply -auto-approve -v
+        run: terraform apply -auto-approve
