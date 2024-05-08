@@ -1,3 +1,6 @@
+# Variable declaration
+variable "SSH_PUBLIC_KEY" {}
+
 provider "aws" {
   region = "eu-west-2"  # Replace with your desired region
 }
@@ -59,5 +62,4 @@ resource "aws_instance" "example" {
   }
 }
 
-# Variable declaration
-variable "SSH_PUBLIC_KEY" {}
+
