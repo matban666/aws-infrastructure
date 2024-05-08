@@ -60,6 +60,8 @@ resource "aws_instance" "example" {
   tags = {
     Name = "My Web Server" 
   }
+
+  key_name = aws_key_pair.my_key_pair.key_name
 }
 
 
