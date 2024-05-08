@@ -18,11 +18,11 @@ jobs:
           aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
       - name: Initialize Terraform
-        working-directory: ./terraform_deploy  
+        working-directory: ./
         run: terraform init  
       - name: Apply Terraform Configuration
         env:
           TF_VAR_SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}  
           TF_LOG: DEBUG
-        working-directory: ./terraform_deploy  
+        working-directory: ./
         run: terraform apply -auto-approve
