@@ -12,8 +12,14 @@ resource "aws_vpc" "main" {
 
 # Subnet (If you don't have an existing one)
 resource "aws_subnet" "public" {
-  vpc_id     = aws_vpc.main.id 
-  cidr_block = "10.0.0.0/24"
+  vpc_id      = aws_vpc.main.id  
+  cidr_block  = "10.0.0.0/24"   
+  map_public_ip_on_launch = true # Ensure dynamic public IP assignment
+
+  # (Optional) Tag for easier identification
+  tags = { 
+    Name = "My Public Subnet"
+  }
 }
 
 # Security Group
