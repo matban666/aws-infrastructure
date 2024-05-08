@@ -1,0 +1,28 @@
+name: Provision EC2 Instance
+on: 
+  # push:
+  #   branches: [ main ]  # Trigger on commits to the main branch
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Configure AWS Credentials
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: | 
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+      - name: Initialize Terraform
+        working-directory: ./terraform_deploy  
+        run: terraform init  
+      - name: Apply Terraform Configuration
+        env:
+          TF_VAR_SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}  
+          TF_LOG: DEBUG
+        working-directory: ./terraform_deploy  
+        run: terraform apply -auto-approve
