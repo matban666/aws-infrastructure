@@ -21,5 +21,7 @@ jobs:
         working-directory: ./  # Or ./terraform if your files are in a 'terraform' folder
         run: terraform init  
       - name: Apply Terraform Configuration
+        env:
+          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}  # Add access to your secrets 
         working-directory: ./  # Or ./terraform 
         run: terraform apply -auto-approve
