@@ -3,11 +3,16 @@ on:
   # push:
   #   branches: [ main ]  # Trigger on commits to the main branch
   workflow_dispatch:
+    inputs:
+      region:
+        description: 'AWS Region'     
+        required: true
+        default: 'eu-west-2' # Set a default value
 jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      AWS_REGION: eu-west-2  # Define the AWS region here
+      AWS_REGION: ${{ github.event.inputs.region }}  # Use the input value
     steps:
       - uses: actions/checkout@v3
       - name: Install Terraform
