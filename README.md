@@ -1,5 +1,7 @@
 
-Create/Destroy an aws EC2 instance with ssh and https access from the internet.  Uses terraform from github actions.
+#Create/Destroy an aws EC2 instance with ssh and https access from the internet.
+
+##Uses terraform from github actions.
 
 Disclaimer: This is just for testing purposes, do not use without assessing all potential security risks.
 
@@ -21,8 +23,7 @@ Checking Provisioned System
    connected to "My Public Route Table" connected to "My Internet Gateway"
 2. Your bucket should now contan "terraform.tfstate"
 3. ssh -i <PRIVATE_RSA_KEY> ec2-user@<DYNAMIC_IP>  
-     (DYNAMIC_IP can be found in aws console page for the)
-     (new instance "My Web Server")
+     (DYNAMIC_IP can be found in aws console page for the new instance "My Web Server")
 
 Teardown
 1. Run github action 'Teardown EC2 Instance' (Set your region if is not hardcoded in the workflows)
