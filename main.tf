@@ -1,3 +1,13 @@
+terraform {
+  backend "s3" {
+    bucket         = "matban666-terraform-state"
+    key            = "terraform.tfstate"
+    region         = "eu-west-2"
+#    dynamodb_table = "my-lock-table" # Probably don't need this for now
+    encrypt        = true
+  }
+}
+
 # Variable declaration
 variable "SSH_PUBLIC_KEY" {}
 
