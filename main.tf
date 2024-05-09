@@ -1,10 +1,11 @@
+# Configure terraform to use s3 to store the statefile, this makes it idempotent
 terraform {
   backend "s3" {
     bucket         = "matban666-terraform-state"
     key            = "terraform.tfstate"
-    region         = "eu-west-2"
+#    region         = "eu-west-2" # Region is set by AWS_REGION environment variable
 #    dynamodb_table = "my-lock-table" # Probably don't need this for now
-    encrypt        = false
+    encrypt        = false # Needs a KMS key
   }
 }
 
@@ -12,7 +13,7 @@ terraform {
 variable "SSH_PUBLIC_KEY" {}
 
 provider "aws" {
-  region = "eu-west-2"  # Replace with your desired region
+  # region = "eu-west-2"  # set by the AWS_DEFAULT_REGION environment variable
 }
 
 # VPC (If you don't have an existing one) 
