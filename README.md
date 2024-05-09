@@ -13,14 +13,14 @@ Prerequisites
 7. Set default aws_region in both .github/workflows (Optional)
 
 Provisioning
-1. Run github action 'Provision EC2 Instance'
+1. Run github action 'Provision EC2 Instance' (Set your region if is not hardcoded in the workflows)
 
 Checking Provisioned System
 1. AWS console should have an instance, keypair, VPC, subnet etc.
 2. ssh -i <PRIVATE_RSA_KEY> ec2-user@<DYNAMIC_IP>  # DYNAMIC_IP can be found in aws console page for the new instance "My Web Server"
 
 Teardown
-1. Run github action 'Teardown EC2 Instance'
+1. Run github action 'Teardown EC2 Instance' (Set your region if is not hardcoded in the workflows)
 
 Checking Teardown
 1. Everythng should be gone from the AWS console
