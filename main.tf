@@ -93,12 +93,8 @@ resource "aws_security_group" "allow_web" {
 
 # SSH Key
 resource "aws_key_pair" "my_key_pair" {
-  key_name   = "my-ec2-key" 
-  public_key = var.SSH_PUBLIC_KEY 
-
-  tags = {
-    Name = "My Key Pair"
-  }
+  key_name   = "my-ec2-key"
+  public_key = var.SSH_PUBLIC_KEY
 }
 
 # EC2 Instance
