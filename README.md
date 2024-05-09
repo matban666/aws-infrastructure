@@ -21,8 +21,8 @@ Checking Provisioned System
    connected to "My Public Route Table" connected to "My Internet Gateway"
 2. Your bucket should now contan "terraform.tfstate"
 3. ssh -i <PRIVATE_RSA_KEY> ec2-user@<DYNAMIC_IP>  
-     # DYNAMIC_IP can be found in aws console page for the 
-     # new instance "My Web Server"
+     (DYNAMIC_IP can be found in aws console page for the)
+     (new instance "My Web Server")
 
 Teardown
 1. Run github action 'Teardown EC2 Instance' (Set your region if is not hardcoded in the workflows)
