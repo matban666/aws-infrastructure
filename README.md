@@ -1,7 +1,7 @@
 
-#Create/Destroy an aws EC2 instance with ssh and https access from the internet.
+Create/Destroy an aws EC2 instance with ssh and https access from the internet.
 
-##Uses terraform from github actions.
+Uses terraform from github actions.
 
 Disclaimer: This is just for testing purposes, do not use without assessing all potential security risks.
 
