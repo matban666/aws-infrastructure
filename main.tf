@@ -85,7 +85,12 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks = ["0.0.0.0/0"]  
   }
 
-  # Adjust egress rules as needed 
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   tags = {
     Name = "My Security Group"
